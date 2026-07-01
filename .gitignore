@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+vendor/
+
+# Build outputs
+.next/
+dist/
+build/
+coverage/
+
+# Local env
+.env
+.env.*
+!.env.example
+
+# Runtime data
+*.sqlite
+*.sqlite-journal
+*.db
+storage/logs/
+storage/framework/cache/
+storage/framework/sessions/
+storage/framework/views/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Local-only extraction residue
+_local/
+runtime/
