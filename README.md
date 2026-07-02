@@ -65,6 +65,9 @@ From the app directory:
 ```powershell
 composer install
 npm install
+Copy-Item .env.example .env
+php artisan key:generate
+New-Item -ItemType File -Force database/database.sqlite | Out-Null
 php artisan migrate:fresh --seed
 composer test
 npm run build
@@ -219,3 +222,7 @@ Suggested local ports:
 - Production email delivery.
 - Background workers and queue infrastructure.
 - Full CRUD for every entity.
+
+## License
+
+MIT License.

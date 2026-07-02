@@ -16,6 +16,9 @@ Laravel + Inertia + React booking operations app.
 cd apps/booking-ops
 composer install
 npm install
+Copy-Item .env.example .env
+php artisan key:generate
+New-Item -ItemType File -Force database/database.sqlite | Out-Null
 php artisan migrate:fresh --seed
 composer test
 npm run build

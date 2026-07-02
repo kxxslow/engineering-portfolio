@@ -28,6 +28,9 @@ Install dependencies once:
 cd apps/booking-ops
 composer install
 npm install
+Copy-Item .env.example .env
+php artisan key:generate
+New-Item -ItemType File -Force database/database.sqlite | Out-Null
 ```
 
 Run the app with two PowerShell terminals during development.
