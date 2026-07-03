@@ -81,7 +81,7 @@ export default function Schedule(props: BookingPageProps) {
                                     </div>
                                 ))}
                             </div>
-                            <div className="grid grid-cols-7 gap-px bg-slate-300">
+                            <div className="grid grid-cols-7 auto-rows-[132px] gap-px bg-slate-300">
                                 {props.scheduleDays.map((day) => (
                                     <CalendarCell
                                         key={day.date}
@@ -129,6 +129,10 @@ function CalendarCell({
 }) {
     const visibleBookings = day.bookings.slice(0, 2);
     const overflowCount = Math.max(day.bookings.length - visibleBookings.length, 0);
+    const quietHint =
+        day.bookings.length === 0 ? ((day.hints ?? [])[0] ?? null) : null;
+    const hasFooter =
+        overflowCount > 0 || day.blockedAttempts.length > 0 || quietHint !== null;
 
     return (
         <button
@@ -136,21 +140,20 @@ function CalendarCell({
             aria-pressed={isSelected}
             onClick={onSelect}
             className={cn(
-                'h-[112px] overflow-hidden bg-white p-2.5 text-left transition hover:bg-sky-50/40',
+                'grid h-full min-h-0 grid-rows-[auto_minmax(0,1fr)_auto] gap-1.5 overflow-hidden bg-white p-2.5 text-left transition hover:bg-sky-50/40',
                 day.muted && 'bg-slate-50 text-slate-400 hover:bg-slate-50',
                 day.active && !isSelected && 'bg-sky-50/40',
                 day.bookings.length > 0 &&
                     !day.active &&
                     !isSelected &&
                     'bg-white',
-                isSelected &&
-                    'bg-sky-50 shadow-sm ring-2 ring-inset ring-[#0b4bb3]',
+                isSelected && 'bg-sky-50 shadow-[inset_0_0_0_2px_#0b4bb3]',
             )}
         >
-            <div className="flex items-center justify-between gap-2">
+            <div className="flex min-w-0 items-center justify-between gap-2">
                 <div
                     className={cn(
-                        'text-sm font-extrabold text-slate-800',
+                        'min-w-0 truncate text-sm font-extrabold text-slate-800',
                         day.muted && 'text-slate-400',
                     )}
                 >
@@ -162,37 +165,36 @@ function CalendarCell({
                     </span>
                 ) : null}
             </div>
-            <div className="mt-2 space-y-1">
+            <div className="min-h-0 space-y-1 overflow-hidden">
                 {visibleBookings.map((booking) => (
                     <BookingSummaryChip key={booking.id} booking={booking} />
                 ))}
-                {overflowCount > 0 || day.blockedAttempts.length > 0 ? (
-                    <div className="flex flex-wrap gap-1">
+            </div>
+            <div className="min-h-[22px] overflow-hidden">
+                {hasFooter ? (
+                    <div className="flex min-w-0 items-center gap-1 overflow-hidden">
+                        {quietHint !== null ? (
+                            <span
+                                className={cn(
+                                    'min-w-0 truncate rounded-sm border px-1.5 py-0.5 text-left text-[11px] font-semibold leading-4',
+                                    chipTone(day.tone),
+                                )}
+                            >
+                                {quietHint}
+                            </span>
+                        ) : null}
                         {overflowCount > 0 ? (
                             <span className="inline-flex shrink-0 items-center rounded-md border border-slate-200 bg-white px-1.5 py-0.5 text-[10px] font-extrabold leading-4 whitespace-nowrap text-slate-600">
                                 +{overflowCount}
                             </span>
                         ) : null}
                         {day.blockedAttempts.length > 0 ? (
-                            <span className="inline-flex shrink-0 items-center rounded-md border border-rose-200 bg-rose-50 px-1.5 py-0.5 text-[10px] font-extrabold leading-4 whitespace-nowrap text-rose-700">
+                            <span className="inline-flex min-w-0 shrink items-center rounded-md border border-rose-200 bg-rose-50 px-1.5 py-0.5 text-[10px] font-extrabold leading-4 whitespace-nowrap text-rose-700">
                                 {day.blockedAttempts.length} blocked
                             </span>
                         ) : null}
                     </div>
                 ) : null}
-                {day.bookings.length === 0 &&
-                    day.blockedAttempts.length === 0 &&
-                    (day.hints ?? []).slice(0, 2).map((hint) => (
-                        <span
-                            key={hint}
-                            className={cn(
-                                'block truncate rounded-sm border px-1.5 py-0.5 text-left text-[11px] font-semibold',
-                                chipTone(day.tone),
-                            )}
-                        >
-                            {hint}
-                        </span>
-                    ))}
             </div>
         </button>
     );
@@ -202,7 +204,7 @@ function BookingSummaryChip({ booking }: { booking: Booking }) {
     return (
         <span
             className={cn(
-                'block w-full truncate rounded-md border px-2 py-0.5 text-[11px] font-extrabold',
+                'block w-full truncate rounded-md border px-2 py-0.5 text-[11px] font-extrabold leading-4 whitespace-nowrap',
                 booking.status === 'cancelled'
                     ? 'border-slate-200 bg-slate-100 text-slate-500'
                     : booking.status === 'checked_in'
