@@ -14,28 +14,19 @@ The goal is to show practical product engineering: state changes, records, const
 | Commerce Sync Engine | Inventory/order sync workflow | Next.js / TypeScript / SQLite / Drizzle | Dry-run diffs, executable row plans, partial failure, retry, protected writes, records comparison, and operation logs. |
 | Support RAG Console | Evidence-based support review | Next.js / TypeScript / SQLite / Drizzle | Source library, answer review, citation coverage, unsupported claims, review decisions, decision history, and evaluation results. |
 
-## Screenshots
+## Preview
 
 ### Booking Ops
 
-![Booking Ops dashboard](docs/assets/screenshots/booking-ops/dashboard.png)
 ![Booking Ops schedule](docs/assets/screenshots/booking-ops/schedule.png)
-![Booking Ops staff capacity](docs/assets/screenshots/booking-ops/staff.png)
-![Booking Ops booking detail](docs/assets/screenshots/booking-ops/booking-detail.png)
 
 ### Commerce Sync Engine
 
-![Commerce Sync diff](docs/assets/screenshots/commerce-sync-engine/diff.png)
-![Commerce Sync execution detail](docs/assets/screenshots/commerce-sync-engine/run-detail-exec.png)
-![Commerce Sync retry detail](docs/assets/screenshots/commerce-sync-engine/run-detail-retry.png)
-![Commerce Sync log](docs/assets/screenshots/commerce-sync-engine/log.png)
+![Commerce Sync dry-run diff](docs/assets/screenshots/commerce-sync-engine/diff.png)
 
 ### Support RAG Console
 
-![Support source library](docs/assets/screenshots/support-rag-console/library.png)
 ![Support answer review](docs/assets/screenshots/support-rag-console/assistant.png)
-![Support decision log](docs/assets/screenshots/support-rag-console/review.png)
-![Support evaluations](docs/assets/screenshots/support-rag-console/evaluations.png)
 
 ## Booking Ops
 
@@ -50,6 +41,12 @@ Booking Ops is a reservation operations workspace for reviewing availability, cu
 - Staff/resource conflict prevention.
 - Customer and booking detail routes.
 - Reservation hold and payment status boundary.
+
+### More screenshots
+
+![Booking Ops dashboard](docs/assets/screenshots/booking-ops/dashboard.png)
+![Booking Ops staff capacity](docs/assets/screenshots/booking-ops/staff.png)
+![Booking Ops booking detail](docs/assets/screenshots/booking-ops/booking-detail.png)
 
 ### Boundaries
 
@@ -101,6 +98,12 @@ Commerce Sync Engine is a local sync console for reviewing proposed source-to-ta
 - Source records vs. target records comparison.
 - Run history, run detail, and operation log visibility.
 
+### More screenshots
+
+![Commerce Sync execution detail](docs/assets/screenshots/commerce-sync-engine/run-detail-exec.png)
+![Commerce Sync retry detail](docs/assets/screenshots/commerce-sync-engine/run-detail-retry.png)
+![Commerce Sync log](docs/assets/screenshots/commerce-sync-engine/log.png)
+
 ### Boundaries
 
 - The sync workflow uses a local SQLite-backed simulation.
@@ -143,6 +146,12 @@ Support RAG Console is a local evidence-review console for checking answer draft
 - Evaluations with coverage, unsupported claim counts, risk posture, and policy status.
 - Ticket and answer detail routes.
 - Deterministic sample-backed review workflow.
+
+### More screenshots
+
+![Support source library](docs/assets/screenshots/support-rag-console/library.png)
+![Support decision log](docs/assets/screenshots/support-rag-console/review.png)
+![Support evaluations](docs/assets/screenshots/support-rag-console/evaluations.png)
 
 ### Boundaries
 
