@@ -2,9 +2,9 @@ import Link from "next/link";
 import { AppShell } from "../../src/components/AppShell";
 import {
   DetailRows,
-  HandoffTitle,
-  HandoffWorkspace,
-} from "../../src/components/HandoffWorkspace";
+  ConsoleTitle,
+  ConsoleWorkspace,
+} from "../../src/components/ConsoleWorkspace";
 import { StatusBadge, type StatusTone } from "../../src/components/StatusBadge";
 import { Button } from "../../src/components/ui/button";
 import { evaluateDraftAction, reviewDecisionAction } from "../../src/lib/actions";
@@ -52,7 +52,7 @@ export default async function AssistantPage({
         { label: `Citation coverage ${coverage}%`, tone: coverage >= 90 ? "green" : "amber" },
       ]}
     >
-      <HandoffWorkspace
+      <ConsoleWorkspace
         filterTitle="Review queue"
         filterSubtitle="Status scope"
         sections={[
@@ -91,7 +91,7 @@ export default async function AssistantPage({
       >
         <div className="draftReviewGrid">
           <section>
-            <HandoffTitle title="Review cases" />
+            <ConsoleTitle title="Review cases" />
             <div className="reviewCaseList">
               {cases.map((item) => (
                 <Link
@@ -120,7 +120,7 @@ export default async function AssistantPage({
           </section>
 
           <section>
-            <span className="handoffInspectorLabel">Answer review</span>
+            <span className="consoleInspectorLabel">Answer review</span>
             <div className="panelHeader" style={{ marginBottom: 18 }}>
               <div>
                 <h2>{focusCase.ticket.subject}</h2>
@@ -142,7 +142,7 @@ export default async function AssistantPage({
               </p>
             </div>
 
-            <HandoffTitle title="Evidence coverage" meta="linked source facts" />
+            <ConsoleTitle title="Evidence coverage" meta="linked source facts" />
             <div className="tableWrap">
               <table className="denseTable">
                 <thead>
@@ -175,10 +175,10 @@ export default async function AssistantPage({
               </table>
             </div>
 
-            <div className="handoffBlock">
-              <HandoffTitle title="Unsupported claims" meta="review required" />
+            <div className="consoleBlock">
+              <ConsoleTitle title="Unsupported claims" meta="review required" />
               {focusCase.draft.unsupportedClaims.length > 0 ? (
-                <div className="handoffQueue">
+                <div className="consoleQueue">
                   {focusCase.draft.unsupportedClaims.map((claim) => (
                     <div className="queueRow" key={claim.id}>
                       <div>
@@ -192,7 +192,7 @@ export default async function AssistantPage({
                   ))}
                 </div>
               ) : (
-                <div className="handoffQueue">
+                <div className="consoleQueue">
                   <strong>No unsupported claims on selected answer</strong>
                   <span className="tableMeta">
                     All answer claims are linked to approved source facts.
@@ -202,7 +202,7 @@ export default async function AssistantPage({
             </div>
           </section>
         </div>
-      </HandoffWorkspace>
+      </ConsoleWorkspace>
     </AppShell>
   );
 }
@@ -218,7 +218,7 @@ function ReviewerActionPanel({
 }) {
   return (
     <>
-      <span className="handoffInspectorLabel">Decision panel</span>
+      <span className="consoleInspectorLabel">Decision panel</span>
       <h2>Reviewer action</h2>
       <div className="decisionActions" style={{ gridTemplateColumns: "1fr", marginTop: 16 }}>
         <form action={evaluateDraftAction}>
@@ -260,8 +260,8 @@ function ReviewerActionPanel({
         </div>
       ) : null}
 
-      <div className="handoffBlock">
-        <HandoffTitle title="Readiness" meta="current checks" />
+      <div className="consoleBlock">
+        <ConsoleTitle title="Readiness" meta="current checks" />
         <DetailRows
           rows={[
             {
@@ -284,9 +284,9 @@ function ReviewerActionPanel({
         />
       </div>
 
-      <div className="handoffBlock">
-        <HandoffTitle title="Decision log" meta="last events" />
-        <div className="handoffCardList">
+      <div className="consoleBlock">
+        <ConsoleTitle title="Decision log" meta="last events" />
+        <div className="consoleCardList">
           {focusCase.auditTrail.slice(0, 4).map((event) => (
             <div className="compactCard" key={event.id}>
               <div>

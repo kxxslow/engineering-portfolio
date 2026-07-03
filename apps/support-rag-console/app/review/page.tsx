@@ -2,9 +2,9 @@ import Link from "next/link";
 import { AppShell } from "../../src/components/AppShell";
 import {
   DetailRows,
-  HandoffTitle,
-  HandoffWorkspace,
-} from "../../src/components/HandoffWorkspace";
+  ConsoleTitle,
+  ConsoleWorkspace,
+} from "../../src/components/ConsoleWorkspace";
 import { StatusBadge, type StatusTone } from "../../src/components/StatusBadge";
 import { formatDateTime } from "../../src/lib/format";
 import { getReviewedCases } from "../../src/lib/view-models";
@@ -38,7 +38,7 @@ export default async function ReviewPage({
         { label: "Audit-ready", tone: "green" },
       ]}
     >
-      <HandoffWorkspace
+      <ConsoleWorkspace
         filterTitle="Audit scope"
         filterSubtitle="Status scope"
         sections={[
@@ -58,7 +58,7 @@ export default async function ReviewPage({
         ]}
         inspector={<DecisionInspector selected={selected} />}
       >
-        <HandoffTitle
+        <ConsoleTitle
           title="Decision history"
           meta="Immutable review decisions and audit events"
         />
@@ -110,7 +110,7 @@ export default async function ReviewPage({
             </tbody>
           </table>
         </div>
-      </HandoffWorkspace>
+      </ConsoleWorkspace>
     </AppShell>
   );
 }
@@ -122,7 +122,7 @@ function DecisionInspector({
 }) {
   return (
     <>
-      <span className="handoffInspectorLabel">Selected decision</span>
+      <span className="consoleInspectorLabel">Selected decision</span>
       <div className="panelHeader" style={{ marginBottom: 18 }}>
         <div>
           <h2>{selected.ticket.subject}</h2>
@@ -136,7 +136,7 @@ function DecisionInspector({
         />
       </div>
 
-      <HandoffTitle title="Decision context" meta="audit detail" />
+      <ConsoleTitle title="Decision context" meta="audit detail" />
       <DetailRows
         rows={[
           { label: "Decision", value: decisionLabel(selected) },
@@ -159,9 +159,9 @@ function DecisionInspector({
         ]}
       />
 
-      <div className="handoffBlock">
-        <HandoffTitle title="Audit trail" meta="ordered events" />
-        <div className="handoffCardList">
+      <div className="consoleBlock">
+        <ConsoleTitle title="Audit trail" meta="ordered events" />
+        <div className="consoleCardList">
           {selected.auditTrail.slice(0, 5).map((event) => (
             <div className="compactCard" key={event.id}>
               <div>

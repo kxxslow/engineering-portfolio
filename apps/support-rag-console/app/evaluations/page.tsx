@@ -2,9 +2,9 @@ import Link from "next/link";
 import { AppShell } from "../../src/components/AppShell";
 import {
   DetailRows,
-  HandoffTitle,
-  HandoffWorkspace,
-} from "../../src/components/HandoffWorkspace";
+  ConsoleTitle,
+  ConsoleWorkspace,
+} from "../../src/components/ConsoleWorkspace";
 import { StatusBadge, type StatusTone } from "../../src/components/StatusBadge";
 import { formatDateTime } from "../../src/lib/format";
 import { getReviewedCases } from "../../src/lib/view-models";
@@ -54,7 +54,7 @@ export default async function EvaluationsPage({
         { label: `Runs ${cases.length}`, tone: "blue" },
       ]}
     >
-      <HandoffWorkspace
+      <ConsoleWorkspace
         filterTitle="Eval runs"
         filterSubtitle="Status scope"
         sections={[
@@ -70,7 +70,7 @@ export default async function EvaluationsPage({
         ]}
         inspector={<EvaluationInspector selected={selected} />}
       >
-        <HandoffTitle title="Evaluation matrix" meta="Quality gates across answer drafts" />
+        <ConsoleTitle title="Evaluation matrix" meta="Quality gates across answer drafts" />
 
         <div className="metricStrip" aria-label="Evaluation summary">
           <MetricTile label="Citation coverage" value={`${coverage}%`} />
@@ -148,7 +148,7 @@ export default async function EvaluationsPage({
             </tbody>
           </table>
         </div>
-      </HandoffWorkspace>
+      </ConsoleWorkspace>
     </AppShell>
   );
 }
@@ -160,7 +160,7 @@ function EvaluationInspector({
 }) {
   return (
     <>
-      <span className="handoffInspectorLabel">Selected run</span>
+      <span className="consoleInspectorLabel">Selected run</span>
       <div className="panelHeader" style={{ marginBottom: 26 }}>
         <div>
           <h2>{answerLabel(selected.ticket.subject)}</h2>
@@ -174,7 +174,7 @@ function EvaluationInspector({
         />
       </div>
 
-      <HandoffTitle title="Metric details" meta="latest run" />
+      <ConsoleTitle title="Metric details" meta="latest run" />
       <DetailRows
         rows={[
           {
@@ -199,8 +199,8 @@ function EvaluationInspector({
         ]}
       />
 
-      <div className="handoffBlock">
-        <HandoffTitle title="Gate policy" meta="thresholds" />
+      <div className="consoleBlock">
+        <ConsoleTitle title="Gate policy" meta="thresholds" />
         <DetailRows
           rows={[
             { label: "Citation coverage", value: ">= 90%" },

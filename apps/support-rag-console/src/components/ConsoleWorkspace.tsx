@@ -15,7 +15,7 @@ export interface FilterSection {
   items: FilterItem[];
 }
 
-export function HandoffWorkspace({
+export function ConsoleWorkspace({
   filterTitle,
   filterSubtitle,
   sections,
@@ -30,21 +30,21 @@ export function HandoffWorkspace({
 }) {
   return (
     <section
-      className={inspector ? "handoffWorkspace" : "handoffWorkspace handoffNoInspector"}
+      className={inspector ? "consoleWorkspace" : "consoleWorkspace consoleNoInspector"}
     >
-      <aside className="handoffFilterRail" aria-label={`${filterTitle} scope`}>
-        <p className="handoffFilterEyebrow">Scope</p>
+      <aside className="consoleFilterRail" aria-label={`${filterTitle} scope`}>
+        <p className="consoleFilterEyebrow">Scope</p>
         <h2>{filterTitle}</h2>
-        {filterSubtitle ? <p className="handoffFilterSubtitle">{filterSubtitle}</p> : null}
-        <div className="handoffFilterSections">
+        {filterSubtitle ? <p className="consoleFilterSubtitle">{filterSubtitle}</p> : null}
+        <div className="consoleFilterSections">
           {sections.map((section) => (
-            <div className="handoffFilterSection" key={section.title}>
+            <div className="consoleFilterSection" key={section.title}>
               <h3>{section.title}</h3>
               {section.subtitle ? <p>{section.subtitle}</p> : null}
-              <div className="handoffFilterList">
+              <div className="consoleFilterList">
                 {section.items.map((item) => (
                   <div
-                    className={item.active ? "handoffFilterItem active" : "handoffFilterItem"}
+                    className={item.active ? "consoleFilterItem active" : "consoleFilterItem"}
                     key={`${section.title}-${item.label}`}
                   >
                     <span
@@ -60,13 +60,13 @@ export function HandoffWorkspace({
           ))}
         </div>
       </aside>
-      <div className="handoffMainPane">{children}</div>
-      {inspector ? <aside className="handoffInspector">{inspector}</aside> : null}
+      <div className="consoleMainPane">{children}</div>
+      {inspector ? <aside className="consoleInspector">{inspector}</aside> : null}
     </section>
   );
 }
 
-export function HandoffTitle({
+export function ConsoleTitle({
   title,
   meta,
   action,
@@ -76,12 +76,12 @@ export function HandoffTitle({
   action?: ReactNode;
 }) {
   return (
-    <div className="handoffTitleRow">
-      <div className="handoffTitleCopy">
+    <div className="consoleTitleRow">
+      <div className="consoleTitleCopy">
         <h2>{title}</h2>
         {meta ? <p>{meta}</p> : null}
       </div>
-      {action ? <div className="handoffTitleAction">{action}</div> : null}
+      {action ? <div className="consoleTitleAction">{action}</div> : null}
     </div>
   );
 }
@@ -92,9 +92,9 @@ export function DetailRows({
   rows: Array<{ label: string; value: ReactNode }>;
 }) {
   return (
-    <dl className="handoffDetailRows">
+    <dl className="consoleDetailRows">
       {rows.map((row) => (
-        <div className="handoffDetailRow" key={row.label}>
+        <div className="consoleDetailRow" key={row.label}>
           <dt>{row.label}</dt>
           <dd>{row.value}</dd>
         </div>

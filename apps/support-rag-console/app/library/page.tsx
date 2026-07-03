@@ -2,9 +2,9 @@ import Link from "next/link";
 import { AppShell } from "../../src/components/AppShell";
 import {
   DetailRows,
-  HandoffTitle,
-  HandoffWorkspace,
-} from "../../src/components/HandoffWorkspace";
+  ConsoleTitle,
+  ConsoleWorkspace,
+} from "../../src/components/ConsoleWorkspace";
 import { StatusBadge, type StatusTone } from "../../src/components/StatusBadge";
 import { formatDateTime } from "../../src/lib/format";
 import {
@@ -81,7 +81,7 @@ export default async function LibraryPage({
         { label: "Knowledge sources only", tone: "blue" },
       ]}
     >
-      <HandoffWorkspace
+      <ConsoleWorkspace
         filterTitle="Scope"
         filterSubtitle="Status scope"
         sections={[
@@ -137,7 +137,7 @@ export default async function LibraryPage({
           ) : null
         }
       >
-        <HandoffTitle
+        <ConsoleTitle
           title="Source entries"
           meta="Published sources and review gaps"
           action={
@@ -203,8 +203,8 @@ export default async function LibraryPage({
           </table>
         </div>
 
-        <div className="handoffQueue handoffBlock">
-          <HandoffTitle title="Open evidence gaps" meta={`${openGapCount} pending source gaps`} />
+        <div className="consoleQueue consoleBlock">
+          <ConsoleTitle title="Open evidence gaps" meta={`${openGapCount} pending source gaps`} />
           {evidenceGaps.length > 0 ? (
             evidenceGaps.map((gap) => (
               <div className="queueRow" key={gap.id}>
@@ -223,7 +223,7 @@ export default async function LibraryPage({
             </p>
           )}
         </div>
-      </HandoffWorkspace>
+      </ConsoleWorkspace>
     </AppShell>
   );
 }
@@ -260,7 +260,7 @@ function SourceInspector({
 
   return (
     <>
-      <span className="handoffInspectorLabel">Selected source</span>
+      <span className="consoleInspectorLabel">Selected source</span>
       <div className="panelHeader" style={{ marginBottom: 18 }}>
         <div>
           <h2>{row.article.title}</h2>

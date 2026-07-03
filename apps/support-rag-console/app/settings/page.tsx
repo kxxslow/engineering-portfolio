@@ -1,8 +1,8 @@
 import { AppShell } from "../../src/components/AppShell";
 import {
-  HandoffTitle,
-  HandoffWorkspace,
-} from "../../src/components/HandoffWorkspace";
+  ConsoleTitle,
+  ConsoleWorkspace,
+} from "../../src/components/ConsoleWorkspace";
 import { StatusBadge } from "../../src/components/StatusBadge";
 import { getKnowledgeLibrary } from "../../src/lib/view-models";
 
@@ -22,7 +22,7 @@ export default function SettingsPage() {
         { label: "Evidence rules", tone: "blue" },
       ]}
     >
-      <HandoffWorkspace
+      <ConsoleWorkspace
         filterTitle="Settings"
         filterSubtitle="Status scope"
         sections={[
@@ -37,13 +37,13 @@ export default function SettingsPage() {
           },
         ]}
       >
-        <HandoffTitle
+        <ConsoleTitle
           title="Review settings"
           meta="Policies that gate reviewer approval."
         />
 
-        <section className="handoffBlock" style={{ borderTop: 0, marginTop: 30, paddingTop: 0 }}>
-          <HandoffTitle
+        <section className="consoleBlock" style={{ borderTop: 0, marginTop: 30, paddingTop: 0 }}>
+          <ConsoleTitle
             title="Evidence policy"
             meta="Controls how source facts support answer drafts."
           />
@@ -69,8 +69,8 @@ export default function SettingsPage() {
           </div>
         </section>
 
-        <section className="handoffBlock">
-          <HandoffTitle
+        <section className="consoleBlock">
+          <ConsoleTitle
             title="Review decisions"
             meta="Actions visible to reviewers and the rules behind each state."
           />
@@ -96,8 +96,8 @@ export default function SettingsPage() {
           </div>
         </section>
 
-        <section className="handoffBlock">
-          <HandoffTitle
+        <section className="consoleBlock">
+          <ConsoleTitle
             title="Source freshness"
             meta="Knowledge source rules used by the library and evaluation pages."
           />
@@ -110,7 +110,7 @@ export default function SettingsPage() {
             />
           </div>
         </section>
-      </HandoffWorkspace>
+      </ConsoleWorkspace>
     </AppShell>
   );
 }

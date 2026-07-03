@@ -293,13 +293,13 @@ textarea {
   max-width: var(--content-max);
 }
 
-.main > section:not(.handoffWorkspace),
+.main > section:not(.consoleWorkspace),
 .main > .panel {
   margin-left: 58px;
   margin-right: 58px;
 }
 
-.main > section:not(.handoffWorkspace):first-of-type,
+.main > section:not(.consoleWorkspace):first-of-type,
 .main > .panel:first-of-type {
   margin-top: 92px;
 }
@@ -1003,7 +1003,7 @@ tbody tr.isHighlighted td:last-child {
   max-width: var(--content-max);
 }
 
-.handoffWorkspace {
+.consoleWorkspace {
   align-items: stretch;
   display: grid;
   grid-template-columns: 176px minmax(0, 1fr) 516px;
@@ -1011,18 +1011,18 @@ tbody tr.isHighlighted td:last-child {
   max-width: none !important;
 }
 
-.handoffNoInspector {
+.consoleNoInspector {
   grid-template-columns: 176px minmax(0, 1fr);
 }
 
-.handoffFilterRail {
+.consoleFilterRail {
   background: #f8fafc;
   border-right: 1px solid #cbd5e1;
   color: #334155;
   padding: 32px 12px 28px;
 }
 
-.handoffFilterEyebrow {
+.consoleFilterEyebrow {
   color: #334155;
   font-size: 10px;
   font-weight: 800;
@@ -1031,38 +1031,38 @@ tbody tr.isHighlighted td:last-child {
   text-transform: uppercase;
 }
 
-.handoffFilterRail h2 {
+.consoleFilterRail h2 {
   color: #111827;
   font-size: 17px;
   line-height: 20px;
   margin-bottom: 4px;
 }
 
-.handoffFilterSubtitle,
-.handoffFilterSection p {
+.consoleFilterSubtitle,
+.consoleFilterSection p {
   color: #64748b;
   font-size: 12px;
   line-height: 16px;
   margin-bottom: 0;
 }
 
-.handoffFilterSections {
+.consoleFilterSections {
   display: grid;
   gap: 28px;
   margin-top: 28px;
 }
 
-.handoffFilterSection {
+.consoleFilterSection {
   border-bottom: 1px solid #cbd5e1;
   padding-bottom: 24px;
 }
 
-.handoffFilterSection:last-child {
+.consoleFilterSection:last-child {
   border-bottom: 0;
   padding-bottom: 0;
 }
 
-.handoffFilterSection h3 {
+.consoleFilterSection h3 {
   color: #334155;
   font-size: 11px;
   letter-spacing: 0.03em;
@@ -1070,12 +1070,12 @@ tbody tr.isHighlighted td:last-child {
   text-transform: uppercase;
 }
 
-.handoffFilterList {
+.consoleFilterList {
   display: grid;
   gap: 6px;
 }
 
-.handoffFilterItem {
+.consoleFilterItem {
   align-items: center;
   border: 1px solid transparent;
   border-radius: 6px;
@@ -1086,7 +1086,7 @@ tbody tr.isHighlighted td:last-child {
   padding: 5px 8px;
 }
 
-.handoffFilterItem.active {
+.consoleFilterItem.active {
   background: transparent;
   border-color: transparent;
   box-shadow: none;
@@ -1094,7 +1094,7 @@ tbody tr.isHighlighted td:last-child {
   font-weight: 800;
 }
 
-.handoffFilterItem strong {
+.consoleFilterItem strong {
   font-size: 12px;
   font-weight: 760;
 }
@@ -1125,7 +1125,7 @@ tbody tr.isHighlighted td:last-child {
   background: #cbd5e1;
 }
 
-.handoffMainPane {
+.consoleMainPane {
   background: #ffffff;
   border-right: 1px solid #64748b;
   min-width: 0;
@@ -1133,18 +1133,18 @@ tbody tr.isHighlighted td:last-child {
   padding: 24px 28px 32px;
 }
 
-.handoffNoInspector .handoffMainPane {
+.consoleNoInspector .consoleMainPane {
   border-right: 0;
 }
 
-.handoffInspector {
+.consoleInspector {
   background: #ffffff;
   min-width: 0;
   overflow: auto;
   padding: 28px 28px 32px;
 }
 
-.handoffTitleRow {
+.consoleTitleRow {
   align-items: center;
   display: flex;
   gap: 18px;
@@ -1152,47 +1152,47 @@ tbody tr.isHighlighted td:last-child {
   margin-bottom: 14px;
 }
 
-.handoffTitleCopy {
+.consoleTitleCopy {
   align-items: baseline;
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
 }
 
-.handoffTitleCopy h2 {
+.consoleTitleCopy h2 {
   color: #111827;
   font-size: 20px;
   line-height: 24px;
   margin-bottom: 0;
 }
 
-.handoffTitleCopy p {
+.consoleTitleCopy p {
   color: #64748b;
   font-size: 13px;
   line-height: 16px;
   margin-bottom: 0;
 }
 
-.handoffTitleAction {
+.consoleTitleAction {
   flex: 0 0 auto;
 }
 
-.handoffBlock {
+.consoleBlock {
   border-top: 1px solid #cbd5e1;
   margin-top: 24px;
   padding-top: 18px;
 }
 
-.handoffBlock h3,
-.handoffInspector h2,
-.handoffInspector h3 {
+.consoleBlock h3,
+.consoleInspector h2,
+.consoleInspector h3 {
   color: #111827;
   font-size: 16px;
   line-height: 20px;
   margin-bottom: 10px;
 }
 
-.handoffInspectorLabel {
+.consoleInspectorLabel {
   color: #475569;
   display: block;
   font-size: 10px;
@@ -1307,13 +1307,13 @@ a.compactCard:focus-visible {
   font-weight: 760;
 }
 
-.handoffQueue,
-.handoffCardList {
+.consoleQueue,
+.consoleCardList {
   display: grid;
   gap: 10px;
 }
 
-.handoffQueue {
+.consoleQueue {
   background: #fffbeb;
   border: 1px solid #facc15;
   padding: 14px 20px 18px;
@@ -1448,13 +1448,13 @@ a.compactCard:hover {
   color: #991b1b;
 }
 
-.handoffDetailRows {
+.consoleDetailRows {
   border-top: 1px solid #cbd5e1;
   display: grid;
   margin: 0 0 26px;
 }
 
-.handoffDetailRow {
+.consoleDetailRow {
   border-bottom: 1px solid #cbd5e1;
   display: grid;
   gap: 14px;
@@ -1462,13 +1462,13 @@ a.compactCard:hover {
   padding: 14px 0;
 }
 
-.handoffDetailRow dt {
+.consoleDetailRow dt {
   color: #111827;
   font-size: 13px;
   font-weight: 760;
 }
 
-.handoffDetailRow dd {
+.consoleDetailRow dd {
   color: #334155;
   font-size: 13px;
   margin: 0;
