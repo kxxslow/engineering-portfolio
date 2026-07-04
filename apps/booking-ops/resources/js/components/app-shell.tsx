@@ -120,7 +120,7 @@ export function AppShell({
                         <div className="flex flex-wrap items-center gap-2">
                             <StatusChip>Staff + room checks</StatusChip>
                             <StatusChip>Accepted bookings recorded</StatusChip>
-                            <StatusChip>Payment not connected</StatusChip>
+                            <StatusChip>Reservation holds only</StatusChip>
                         </div>
                         <div className="flex items-center gap-5">
                             <div className="flex h-11 min-w-[270px] items-center justify-center gap-3 rounded-full border border-sky-200 bg-sky-50 px-6 text-xs font-extrabold text-sky-800 shadow-sm">

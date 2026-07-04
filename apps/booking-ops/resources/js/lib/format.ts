@@ -54,11 +54,11 @@ export function formatPaymentPolicy(value: string | null) {
 
 export function formatPaymentBoundary(value: string | null) {
     if (!value) {
-        return 'Payment not connected';
+        return 'Reservation holds only';
     }
 
     if (value === 'mock-only') {
-        return 'Payment not connected';
+        return 'Reservation holds only';
     }
 
     return value.replaceAll('-', ' ');
