@@ -533,7 +533,7 @@ class DatabaseSeeder extends Seeder
                 'pending_review',
                 'payment_hold',
                 null,
-                'Reservation hold is waiting for customer confirmation; payment processor actions are not connected.',
+                'Reservation hold is waiting for customer confirmation; payment status stays inside the operations workspace.',
                 '2026-06-30 16:35:00',
             ),
         ], ['id']);

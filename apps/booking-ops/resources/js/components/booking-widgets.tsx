@@ -219,7 +219,7 @@ export function BookingTable({
 
 export function AttemptRail({
     attempts,
-    title = 'Request audit trail',
+    title = 'Request outcome history',
     description = 'Accepted, blocked, and incomplete requests stay visible for review.',
 }: Pick<BookingPageProps, 'attempts'> & {
     title?: string;

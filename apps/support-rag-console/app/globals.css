@@ -1357,7 +1357,7 @@ a.compactCard:hover {
 
 .reviewCaseList {
   display: grid;
-  gap: 10px;
+  gap: 8px;
 }
 
 .reviewCaseCard {
@@ -1368,10 +1368,10 @@ a.compactCard:hover {
   color: inherit;
   cursor: pointer;
   display: grid;
-  gap: 12px;
+  gap: 10px;
   grid-template-columns: minmax(0, 1fr) auto;
   overflow: hidden;
-  padding: 14px 16px;
+  padding: 11px 14px;
   transition:
     background-color 120ms ease,
     border-color 120ms ease,
@@ -1392,6 +1392,24 @@ a.compactCard:hover {
   background: #eaf4ff;
   border-color: #93c5fd;
   box-shadow: inset 0 0 0 1px #bfdbfe;
+}
+
+.reviewCaseSummary {
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 8px;
+  color: #334155;
+  padding: 10px 14px;
+}
+
+.compactInspectorBlock {
+  margin-top: 18px;
+  padding-top: 14px;
+}
+
+.latestEventCard {
+  align-items: start;
+  padding: 12px 14px;
 }
 
 .draftReviewGrid {

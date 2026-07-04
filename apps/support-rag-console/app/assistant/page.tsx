@@ -25,6 +25,8 @@ export default async function AssistantPage({
     cases.find((item) => item.draft.id === params?.draft) ??
     cases.find((item) => item.reviewedDraft.status !== "approved") ??
     cases[0];
+  const visibleCases = visibleReviewCases(cases, focusCase.draft.id);
+  const hiddenCaseCount = Math.max(cases.length - visibleCases.length, 0);
   const approvalState = getApprovalState(focusCase);
   const unsupportedCount = cases.reduce(
     (total, item) => total + item.draft.unsupportedClaims.length,
@@ -93,7 +95,7 @@ export default async function AssistantPage({
           <section>
             <ConsoleTitle title="Review cases" />
             <div className="reviewCaseList">
-              {cases.map((item) => (
+              {visibleCases.map((item) => (
                 <Link
                   className={
                     item.draft.id === focusCase.draft.id
@@ -116,6 +118,14 @@ export default async function AssistantPage({
                   />
                 </Link>
               ))}
+              {hiddenCaseCount > 0 ? (
+                <div className="reviewCaseSummary">
+                  <strong>{hiddenCaseCount} more in queue</strong>
+                  <span className="tableMeta">
+                    Full review history stays in Decision Log.
+                  </span>
+                </div>
+              ) : null}
             </div>
           </section>
 
@@ -284,11 +294,11 @@ function ReviewerActionPanel({
         />
       </div>
 
-      <div className="consoleBlock">
-        <ConsoleTitle title="Decision log" meta="last events" />
+      <div className="consoleBlock compactInspectorBlock">
+        <ConsoleTitle title="Latest event" meta="Decision Log holds full history" />
         <div className="consoleCardList">
-          {focusCase.auditTrail.slice(0, 4).map((event) => (
-            <div className="compactCard" key={event.id}>
+          {focusCase.auditTrail.slice(0, 1).map((event) => (
+            <div className="compactCard latestEventCard" key={event.id}>
               <div>
                 <strong>{event.event.replaceAll("_", " ")}</strong>
                 <span className="tableMeta">{event.message}</span>
@@ -300,6 +310,25 @@ function ReviewerActionPanel({
       </div>
     </>
   );
+}
+
+function visibleReviewCases(
+  cases: ReturnType<typeof getReviewedCases>,
+  selectedDraftId: string,
+) {
+  const visible = cases.slice(0, 6);
+
+  if (visible.some((item) => item.draft.id === selectedDraftId)) {
+    return visible;
+  }
+
+  const selected = cases.find((item) => item.draft.id === selectedDraftId);
+
+  if (!selected) {
+    return visible;
+  }
+
+  return [...visible.slice(0, 5), selected];
 }
 
 function caseTitle(subject: string) {

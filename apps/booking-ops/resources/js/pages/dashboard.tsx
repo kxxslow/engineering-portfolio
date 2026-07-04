@@ -3,13 +3,14 @@ import { useState } from 'react';
 
 import { AppShell } from '@/components/app-shell';
 import { AttemptForm } from '@/components/attempt-form';
-import {
-    AttemptRail,
-    BookingTable,
-    MetricsCards,
-} from '@/components/booking-widgets';
+import { AttemptRail, MetricsCards } from '@/components/booking-widgets';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import type { BookingPageProps } from '@/types/booking';
+import type {
+    BookingAttempt,
+    BookingPageProps,
+    Metrics,
+    SchedulingConstraint,
+} from '@/types/booking';
 
 export default function Dashboard(props: BookingPageProps) {
     const [selectedCustomerId, setSelectedCustomerId] = useState(
@@ -27,11 +28,15 @@ export default function Dashboard(props: BookingPageProps) {
                 <MetricsCards metrics={props.metrics} />
                 <div className="grid grid-cols-[minmax(0,1fr)_420px] gap-5">
                     <div className="space-y-5">
-                        <BookingTable bookings={props.bookings} />
-                        <AttemptRail
+                        <CurrentStatePanel
                             attempts={props.attempts}
-                            title="Latest request outcome"
-                            description="The most recent availability check stays visible with its booking rule result."
+                            constraints={props.constraints}
+                            metrics={props.metrics}
+                        />
+                        <AttemptRail
+                            attempts={props.attempts.slice(0, 5)}
+                            title="Latest request outcomes"
+                            description="Recent intake decisions, holds, and blocked requests stay visible without becoming the operations queue."
                         />
                     </div>
                     <div className="space-y-5">
@@ -95,6 +100,52 @@ export default function Dashboard(props: BookingPageProps) {
     );
 }
 
+function CurrentStatePanel({
+    attempts,
+    constraints,
+    metrics,
+}: {
+    attempts: BookingAttempt[];
+    constraints: SchedulingConstraint[];
+    metrics: Metrics;
+}) {
+    const activeRules = constraints.filter((constraint) => constraint.isActive);
+    const followUps = attempts.filter((attempt) =>
+        ['pending_review', 'payment_hold'].includes(attempt.status),
+    );
+
+    return (
+        <Card>
+            <CardHeader className="pb-3">
+                <div className="text-sm font-semibold text-slate-950">
+                    Current state
+                </div>
+                <p className="mt-1 text-xs text-slate-500">
+                    Intake health, active rules, and boundary status for the
+                    booking workspace.
+                </p>
+            </CardHeader>
+            <CardContent className="grid grid-cols-3 gap-3 pt-0">
+                <StateTile
+                    label="Request intake"
+                    value={`${attempts.length} checks`}
+                    detail={`${followUps.length} need follow-up`}
+                />
+                <StateTile
+                    label="Booking rules active"
+                    value={`${activeRules.length} rules`}
+                    detail={`${metrics.blockedAttempts} blocked requests`}
+                />
+                <StateTile
+                    label="Reservation holds only"
+                    value={`${metrics.activeBookings} active`}
+                    detail={`${metrics.releasedByCancellation} released holds`}
+                />
+            </CardContent>
+        </Card>
+    );
+}
+
 function Stat({ label, value }: { label: string; value: string | number }) {
     return (
         <div className="rounded-lg border border-slate-200 bg-slate-50 p-2.5">
@@ -103,6 +154,30 @@ function Stat({ label, value }: { label: string; value: string | number }) {
             </div>
             <div className="mt-1 text-base font-semibold text-slate-950">
                 {value}
+            </div>
+        </div>
+    );
+}
+
+function StateTile({
+    detail,
+    label,
+    value,
+}: {
+    detail: string;
+    label: string;
+    value: string;
+}) {
+    return (
+        <div className="rounded-lg border border-slate-200 bg-slate-50 p-3">
+            <div className="text-[11px] font-extrabold tracking-[0.04em] text-slate-500 uppercase">
+                {label}
+            </div>
+            <div className="mt-2 text-lg font-extrabold text-slate-900">
+                {value}
+            </div>
+            <div className="mt-1 text-xs leading-5 text-slate-500">
+                {detail}
             </div>
         </div>
     );
